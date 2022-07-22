@@ -15,7 +15,7 @@ GET_OVERSIZED_MAILBOXES.ps1
 
 1. Generate a .pfx certificate
 
- For this purpose you can use the [GEN_CERT_PFX](https://github.com/fmartineze/M365Scripts/tree/main/GET_CERT_PFX) script.
+   For this purpose you can use the [GEN_CERT_PFX](https://github.com/fmartineze/M365Scripts/tree/main/GET_CERT_PFX) script.
 
 2. Register an app in Azure Active Directory for each tenant.
 
