@@ -10,7 +10,14 @@
 ```sh
 GET_OVERSIZED_MAILBOXES.ps1
 ```
-    
+## REQUIREMENTS
+   
+   You need to have the following modules installed:
+   * ExchangeOnlineManagement
+   ```sh
+   Install-Module ExchangeOnlineManagement -Repository PSGallery -AllowClobber -Force
+   ```
+
 ## CONFIGURE
 
 1. Generate a .pfx certificate

@@ -52,6 +52,9 @@ Function ConvertTo-Gb {
 }
 function Get-MailBoxStats {
 	process {
+		# Get full Certificate path
+		$Cert_Path = get-childitem $Cert_Path | %{$_.FullName}
+
 		# CONNECT to M365
 		if ((Get-Module -ListAvailable -Name ExchangeOnlineManagement) -ne $null)  {
 			Connect-ExchangeOnline -CertificateFilePath $Cert_Path -CertificatePassword $(ConvertTo-SecureString -String $Cert_Pass -AsPlainText -Force) -AppId $item.AppID -Organization $item.Organization  -ShowBanner:$false -ShowProgress:$false
