@@ -66,12 +66,11 @@ function Get-MailBoxStats {
 		$mailboxes = Get-EXOMailbox -ResultSize unlimited -RecipientTypeDetails "UserMailbox,SharedMailbox" -Properties IssueWarningQuota, ProhibitSendReceiveQuota, ArchiveQuota, ArchiveWarningQuota, ArchiveDatabase | select UserPrincipalName, DisplayName, PrimarySMTPAddress, RecipientType, RecipientTypeDetails, IssueWarningQuota, ProhibitSendReceiveQuota, ArchiveQuota, ArchiveWarningQuota, ArchiveDatabase 
 		
 		# Get and compare the size of each mailbox
-		$mailboxes | foreach {
+		$mailboxes | ForEach-Object {
 			
 			$mbsize = Get-MailboxStatistics -identity $_.UserPrincipalName | Select TotalItemSize,TotalDeletedItemSize,ItemCount,DeletedItemCount,LastUserActionTime
 			
 			if ($mbsize -ne $null){
-				$username = $_.DisplayName
 				$archivesizereport = $null
 				$mb_archivesize = 0
 
@@ -108,7 +107,10 @@ function Get-MailBoxStats {
 					}			
 
 					# Export .csv with the account details
-					Get-MailboxFolderStatistics $_.PrimarySMTPAddress -Archive | Select-Object -Property FolderPath, FolderSize, FolderAndSubfolderSize  | Export-Csv "$($ExportPath)$($_.PrimarySMTPAddress).csv" 
+					Get-MailboxFolderStatistics -Identity $_.PrimarySMTPAddress -ResultSize Unlimited -IncludeSoftDeletedRecipients | Select-Object -Property FolderPath, @{label="FolderSize"; expression={[int]$_.FolderSize.Substring($_.FolderSize.IndexOf("(")+1, ($_.FolderSize.IndexOf("b") - $_.FolderSize.IndexOf("(") ) -1 )}  }, @{label="FolderAndSubfolderSize"; expression={[int]$_.FolderAndSubfolderSize.Substring($_.FolderAndSubfolderSize.IndexOf("(")+1, ($_.FolderAndSubfolderSize.IndexOf("b") - $_.FolderAndSubfolderSize.IndexOf("(") ) -1 )}  }  | Export-Csv "$($ExportPath)$($_.PrimarySMTPAddress)_mailbox.csv" 
+					if ($mb_archive_percent_usage -gt 0){
+						Get-MailboxFolderStatistics -Identity $_.PrimarySMTPAddress -ResultSize Unlimited -IncludeSoftDeletedRecipients -Archive| Select-Object -Property FolderPath, @{label="FolderSize"; expression={[int]$_.FolderSize.Substring($_.FolderSize.IndexOf("(")+1, ($_.FolderSize.IndexOf("b") - $_.FolderSize.IndexOf("(") ) -1 )}  }, @{label="FolderAndSubfolderSize"; expression={[int]$_.FolderAndSubfolderSize.Substring($_.FolderAndSubfolderSize.IndexOf("(")+1, ($_.FolderAndSubfolderSize.IndexOf("b") - $_.FolderAndSubfolderSize.IndexOf("(") ) -1 )}  }  | Export-Csv "$($ExportPath)$($_.PrimarySMTPAddress)_archive.csv" 
+					}
 				}
 
 			}
@@ -124,7 +126,6 @@ function Get-MailBoxStats {
 # --- SCRIPT --- 
 
 $tenants = Import-Csv -Path $Tenants_Path -Header AppID,Organization,Name
-$output = @()
 
 if ( $ExportPath.Length -gt 0){				# Test Export Path
 	if (( $ExportPath.substring($ExportPath.Length -1) -eq "\") -or ( $ExportPath.substring($ExportPath.Length -1) -eq "/")){
