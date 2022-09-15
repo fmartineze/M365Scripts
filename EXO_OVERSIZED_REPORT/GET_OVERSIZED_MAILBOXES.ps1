@@ -3,7 +3,7 @@
   This Script allows you to analyze the space used in the mailboxes of different tenants.
   Generates a report of the mailboxes with a use greater than that indicated in $SizeLimit and exports an analysis of each affected mailbox in csv.
 
-  Version:        1.0
+  Version:        2.0
   Author:		  F.Martínez
   Creation Date:  16 Jun 2022
   Links:		  https://github.com/fmartineze
