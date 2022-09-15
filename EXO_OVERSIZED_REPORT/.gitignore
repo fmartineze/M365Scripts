@@ -1,3 +1,4 @@
 *.csv
 *.cer
 *.pfx
+*.local.ps1
