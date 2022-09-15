@@ -56,13 +56,12 @@ Example:
 
 4. Modify the variables in the GET_OVERSIZED_MAILBOXES.ps1 file in the PARAMETERS section.
 
-| Variable       | Use
-|----------------|-------------------------------
-|$Cert_Path      | Path to pfx certificate
-|$Cert_Pass      | Certificate password
-|$Tenants_Path   | Tenant list csv
-|$ExportPath     | Path to export results
-|$SizeLimit      | Minimum mailbox size to filter.
-|$OnlyThisTenant | Indicate the name of the tenant, in case you wish to carry out the analysis of only one of those indicated in the csv file.
-|                |
-
+| Variable         | Use
+|------------------|-------------------------------
+|$Cert_Path        | Path to pfx certificate
+|$Cert_Pass        | Certificate password
+|$Tenants_Path     | Tenant list csv
+|$ExportPath       | Path to export results
+|$SizeLimitPercent | Minimum used mailbox space percent to filter
+|$OnlyThisTenant   | Indicate the name of the tenant, in case you wish to carry out the analysis of only one of those indicated in the csv file.
+|                  |
