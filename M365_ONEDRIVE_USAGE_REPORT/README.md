@@ -52,7 +52,7 @@ GET_ONEDRIVE_USAGE_REPORT.ps1
 3. Create a .csv file with the tenant data to analyze. Use the following format:
 
 ```sh
-appid, tenant, organization
+tenant_id, app_id, digital_foot_print, tenant_name
 ```
 
 Example:
