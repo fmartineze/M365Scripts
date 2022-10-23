@@ -2,7 +2,7 @@
 
 ## PURPOSE: 
    
-   This Script allows you to analyze the space used in the users onedrive, in several tenants..
+   This Script allows you to analyze and report the space used in the users onedrive, in several tenants..
    
 ## SYNTASIX: 
     

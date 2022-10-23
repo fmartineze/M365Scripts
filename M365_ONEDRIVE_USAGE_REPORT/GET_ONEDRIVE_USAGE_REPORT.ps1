@@ -11,7 +11,7 @@
 
   * You need to have a .pfx certificate
   * Register an app in Azure Active Directory for each tenant.
-  * Fill in a csv with the list of tenants in the following format: tenant_id, app_id, digital_foot_print, tenant_name (example: 9c7c3e1g-9713-400e-8200-6b00a1007005, 1b072e34-123b-1cef-2c34-1d02b34c1d2d, mytenant.onmicrosoft.com).
+  * Fill in a csv with the list of tenants in the following format: $, app_id, digital_foot_print, tenant_name (example: 9c7c3e1g-9713-400e-8200-6b00a1007005, 1b072e34-123b-1cef-2c34-1d02b34c1d2d, mytenant.onmicrosoft.com).
 #>
 
 # --- Dependences
