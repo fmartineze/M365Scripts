@@ -62,7 +62,7 @@ secondusername@contoso.com, newsecondusername@contoso.com
 
 ```
 
-4. Modify the variables in the GET_ONEDRIVE_USAGE_REPORT.ps1 file in the PARAMETERS section.
+4. Modify the variables in the M365_MASS_USERNAME_RENAME.ps1 file in the PARAMETERS section.
 
 | Variable               | Use
 |------------------------|-------------------------------
